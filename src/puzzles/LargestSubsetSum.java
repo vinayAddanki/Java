@@ -5,16 +5,11 @@ public class LargestSubsetSum {
 	public static void main(String[] args) {
 
 		int array[] = new int[] { -2, -5, 6, -2, -3, 1, 5, -6 };
-		maxSubsetSum(array);
-		int output = FindGreatestSumOfSubArray(array);
+		int output = maxSubsetSum(array);
 		System.out.println(output);
 	}
 
-	static long[] maxSubsetSum(int[] array) {
-		return null;
-	}
-
-	static int FindGreatestSumOfSubArray(int[] array) {
+	static int maxSubsetSum(int[] array) {
 		if (array.length == 0)
 			return 0;
 		int maxSum = array[0];
