@@ -9,7 +9,7 @@ public class LargeResponses {
 
 	@SuppressWarnings({ "unused", "resource" })
 	public static void main(String[] args) throws IOException {
-		int itr = 0, i = 0;
+		int itr = 0, i = 0, k1 = 0, totalBytes = 0, bytesCount = 0;
 		char c = 0;
 		char[] charArray = new char[1000000];
 		byte[] bs = new byte[4];
@@ -22,17 +22,20 @@ public class LargeResponses {
 				for (byte b : bs) {
 					c = (char) b;
 					if (c == '\r' || c == '\n') {
-						continue;
+						String newString = new String(charArray);
+						String[] strs = newString.split(" ");
+						String last = strs[strs.length - 1];
+						int bytesValue = Integer.parseInt(last);
+						if (bytesValue >= 15000) {
+							totalBytes = totalBytes + bytesValue;
+							bytesCount++;
+						}
+						bw.write(bytesCount + " " + totalBytes);
+						break;
 					}
 					charArray[itr] = c;
 					itr++;
 				}
-			}
-			String newString = new String(charArray);
-			String[] strs = newString.split(" ");
-			for (int k1 = 0; k1 <= strs.length - 1; k1++) {
-				bw.write(strs[k1]);
-				System.out.print(strs[k1]);
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
