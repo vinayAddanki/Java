@@ -20,7 +20,9 @@ public class LargestSubsetSum {
 			} else {
 				arr += array[i];
 			}
+			
 			maxSum = maxSum > arr ? maxSum : arr;
+			System.out.println(maxSum);
 		}
 		return maxSum;
 	}

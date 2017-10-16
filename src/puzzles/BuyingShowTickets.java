@@ -24,28 +24,20 @@ public class BuyingShowTickets {
 
 	static long waitingTime(int[] tickets, int p) {
 
-		int sum = 0, count = 0, ifcount = 0;
-		int temp[] = new int[tickets.length];
-		for (int num : tickets) {
-			sum = sum + num;
-		}
-		for (int i : temp) {
-			temp[i] = 0;
-		}
-		for (int i = 0; i < tickets.length; i++) {
-			for (int j = 0; j < temp.length; j++) {
-				if (i >= 1 && tickets[j] == temp[j]) {
-					ifcount++;
-				} else {
-					temp[j] = temp[j] + 1;
-					count++;
-				}
-				if (j == p && tickets[j] == temp[j]) {
-					return count;
-				}
+		int time = 0;
+		while (tickets[p] != 0) {
+			if (tickets[0] > 0) {
+				tickets[0] = tickets[0] - 1;
+				time++;
 			}
+			int n, temp = tickets[0];
+			n = tickets.length;
+			for (int i = 0; i < n - 1; i++)
+				tickets[i] = tickets[i + 1];
+			tickets[n - 1] = temp;
+			p = (p + n - 1) % n;
 		}
-		return 0;
+		return time;
 	}
 
 }
